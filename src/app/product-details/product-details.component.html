@@ -1,0 +1,66 @@
+@if (!loading && !error && product) {
+  <div class="container">
+    <!-- *ngIf="" -->
+    <button class="back-btn" routerLink="/">← Back to Home</button>
+
+    <div class="product-details">
+      <div class="image-carousel">
+        <div class="carousel-container">
+          <img
+            [src]="product.imageUrls[currentImageIndex]"
+            [alt]="product.name"
+            class="main-image"
+          />
+          <button class="nav-btn prev" (click)="prevImage()" [disabled]="currentImageIndex === 0">
+            ‹
+          </button>
+          <button
+            class="nav-btn next"
+            (click)="nextImage()"
+            [disabled]="currentImageIndex === product.imageUrls.length - 1"
+          >
+            ›
+          </button>
+        </div>
+        <!--  -->
+        @if (product.imageUrls.length > 1) {
+          <div class="dots">
+            @for (url of product.imageUrls; let i = $index; track i) {
+              <span
+                class="dot"
+                [class.active]="i === currentImageIndex"
+                (click)="goToImage(i)"
+              ></span>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="product-info">
+        <h1 class="product-title">{{ product.title }}</h1>
+        <p class="product-name">{{ product.name }}</p>
+        <p class="product-price">${{ product.price }}</p>
+        <p class="stock-status" [ngClass]="getStockClass()">
+          {{ getStockStatus() }} ({{ product.stock }} available)
+        </p>
+        <p class="product-description">{{ product.description }}</p>
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+}
+
+@if (loading) {
+  <div class="loading-spinner">
+    <!-- *ngIf="loading" -->
+    <div class="spinner"></div>
+    <p>Loading product details...</p>
+  </div>
+}
+@if (error) {
+  <div class="error-message">
+    <!-- *ngIf="error" -->
+    <p>{{ error }}</p>
+    <button class="back-btn" routerLink="/">Back to Home</button>
+  </div>
+}

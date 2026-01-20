@@ -1,0 +1,40 @@
+<div class="container">
+  <h1 class="title">Welcome to Our E-Commerce Store</h1>
+
+  @if (loading) {
+    <div class="loading-spinner">
+      <div class="spinner"></div>
+      <p>Loading products...</p>
+    </div>
+  }
+
+  @if (error) {
+    <div class="error-message">
+      <p>{{ error }}</p>
+    </div>
+  }
+
+  <div class="products-grid">
+    <!-- *ngIf="!loading && !error" -->
+    @for (product of products; track product._id) {
+      <!-- *ngFor="let product of products; let i = index" -->
+      <div class="product-card" routerLink="/products/{{ product._id }}">
+        <img
+          [src]="product.imageUrls[0]"
+          [alt]="product.name"
+          class="product-image"
+          loading="lazy"
+        />
+        <div class="product-info">
+          <h3 class="product-title">{{ product.title }}</h3>
+          <p class="product-name">{{ product.name }}</p>
+          <p class="product-price">${{ product.price }}</p>
+          <p class="product-description">{{ product.description | slice: 0 : 50 }}...</p>
+          <button class="view-details-btn">View Details</button>
+        </div>
+      </div>
+    } @empty {
+      <p>There are no items to display.</p>
+    }
+  </div>
+</div>
