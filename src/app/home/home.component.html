@@ -1,23 +1,21 @@
 <div class="container">
   <h1 class="title">Welcome to Our E-Commerce Store</h1>
 
-  @if (loading) {
+  @if (loading()) {
     <div class="loading-spinner">
       <div class="spinner"></div>
       <p>Loading products...</p>
     </div>
   }
 
-  @if (error) {
+  @if (error()) {
     <div class="error-message">
-      <p>{{ error }}</p>
+      <p>{{ error() }}</p>
     </div>
   }
 
   <div class="products-grid">
-    <!-- *ngIf="!loading && !error" -->
-    @for (product of products; track product._id) {
-      <!-- *ngFor="let product of products; let i = index" -->
+    @for (product of products(); track product._id) {
       <div class="product-card" routerLink="/products/{{ product._id }}">
         <img
           [src]="product.imageUrls[0]"
