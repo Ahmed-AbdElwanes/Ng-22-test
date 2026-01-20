@@ -12,7 +12,7 @@
   ],
   "routes": [
     {
-      "src": "/(assets|favicon.ico|index.html|.*\\.js|.*\\.css|.*\\.json)",
+      "src": "/(favicon.ico|index.html|.*\\.js|.*\\.css|.*\\.json)",
       "dest": "/$1"
     },
     {
