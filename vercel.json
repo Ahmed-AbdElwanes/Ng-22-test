@@ -6,14 +6,17 @@
       "use": "@vercel/static"
     },
     {
-      "src": "dist/server/server.mjs",
+      "src": "dist/**/server/*.mjs",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/(favicon.ico|index.html|.*\\.js|.*\\.css|.*\\.json)",
-      "dest": "/$1"
+      "src": "/(.*\\.js|.*\\.css|.*\\.json|favicon\\.ico)",
+      "dest": "/$1",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/.*",
