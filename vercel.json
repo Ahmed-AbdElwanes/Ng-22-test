@@ -1,19 +1,12 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "builds": [
-    {
-      "src": "dist/Angular-test/server/server.mjs",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["dist/**"]
-      }
+  "public": true,
+  "name": "project",
+  "devCommand": "node dist/Angular-test/server/server.mjs",
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/Angular-test/**"
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/dist/Angular-test/server/server.mjs"
-    }
-  ]
+  }
 }
