@@ -1,10 +1,7 @@
 {
   "version": 2,
+  "buildCommand": "npm run build",
   "builds": [
-    {
-      "src": "dist/Angular-test/**",
-      "use": "@vercel/static"
-    },
     {
       "src": "api/index.js",
       "use": "@vercel/node"
@@ -12,14 +9,7 @@
   ],
   "routes": [
     {
-      "src": "/(assets|.*\\.js|.*\\.css|.*\\.json|favicon\\.ico)",
-      "dest": "/$1",
-      "headers": {
-        "cache-control": "public, max-age=31536000, immutable"
-      }
-    },
-    {
-      "src": "/.*",
+      "src": "/(.*)",
       "dest": "/api/index.js"
     }
   ]
