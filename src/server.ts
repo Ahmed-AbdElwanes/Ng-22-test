@@ -19,11 +19,12 @@ const path = require('path'); //
  *
  * Example:
  * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
  * ```
  */
+app.get('/api/{*splat}', (req, res) => {
+  // Handle API request
+  res.render('index', { req });
+});
 
 /**
  * Serve static files from /browser
@@ -32,7 +33,7 @@ app.use(
   express.static(browserDistFolder, {
     maxAge: '1y',
     index: false,
-    redirect: false,
+    redirect: true,
   }),
 );
 
@@ -54,9 +55,9 @@ app.use((req, res, next) => {
 //   res.sendFile(path.join(__dirname, 'dist/Angular-test/index.html'));
 // });
 
-app.get('*', (req, res) => {
-  res.render('index', { req });
-});
+// app.get('*', (req, res) => {
+//   res.render('index', { req });
+// });
 
 //
 //
