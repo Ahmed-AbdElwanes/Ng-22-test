@@ -3,14 +3,14 @@
   "buildCommand": "npm run build",
   "builds": [
     {
-      "src": "api/index.js",
+      "src": "dist/Angular-test/server/server.mjs",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/api/index.js"
+      "dest": "/dist/Angular-test/server/server.mjs"
     }
   ]
 }
