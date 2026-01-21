@@ -53,6 +53,11 @@ app.use((req, res, next) => {
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'dist/Angular-test/index.html'));
 // });
+
+// app.get('*', (req, res) => {
+//   res.render('index', { req });
+// });
+
 //
 //
 //
